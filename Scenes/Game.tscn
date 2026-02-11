@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://debhdeisja0uh"]
+
+[ext_resource type="PackedScene" uid="uid://cjr0sf5or1sqe" path="res://Scenes/Bird.tscn" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://bskunm4lqnnfd" path="res://Scenes/Pipe Spawner.tscn" id="2_gl6un"]
+[ext_resource type="Script" uid="uid://didvsi4y31y7j" path="res://Scripts/Label.gd" id="3_j5yw3"]
+[ext_resource type="Script" uid="uid://bjxhwmfhjkmhv" path="res://Scripts/game_over.gd" id="4_b2bpf"]
+[ext_resource type="Script" uid="uid://ddixrqaih43b" path="res://Scripts/Restart.gd" id="4_kldst"]
+[ext_resource type="PackedScene" uid="uid://cof6mad4hauyj" path="res://Scenes/Death Box.tscn" id="6_7lihs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgofq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2irst"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Bird" parent="." instance=ExtResource("1_iukft")]
+position = Vector2(640, 360)
+scale = Vector2(0.2, 0.2)
+jump_force = 500.0
+
+[node name="PipeSpawner" parent="." instance=ExtResource("2_gl6un")]
+position = Vector2(1400, 360)
+
+[node name="Score" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 90.0
+offset_bottom = 48.0
+scale = Vector2(1.25, 1.25)
+theme_override_font_sizes/font_size = 30
+text = "Score : 0"
+script = ExtResource("3_j5yw3")
+
+[node name="Game Over" type="Node2D" parent="." node_paths=PackedStringArray("bird")]
+visible = false
+script = ExtResource("4_b2bpf")
+bird = NodePath("../Bird")
+
+[node name="Label" type="Label" parent="Game Over"]
+offset_left = 321.0
+offset_top = 179.0
+offset_right = 977.0
+offset_bottom = 345.0
+theme_override_font_sizes/font_size = 121
+text = "Game Over"
+
+[node name="Button" type="Button" parent="Game Over"]
+offset_left = 513.0
+offset_top = 359.0
+offset_right = 776.0
+offset_bottom = 437.0
+theme_override_font_sizes/font_size = 51
+text = "Play Again"
+script = ExtResource("4_kldst")
+
+[node name="Killzone" parent="." instance=ExtResource("6_7lihs")]
+position = Vector2(640, 0)
+scale = Vector2(68, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("RectangleShape2D_fgofq")
+
+[node name="Killzone2" parent="." instance=ExtResource("6_7lihs")]
+position = Vector2(640, 720)
+scale = Vector2(68, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone2"]
+shape = SubResource("RectangleShape2D_2irst")
+
+[connection signal="button_down" from="Game Over/Button" to="Game Over/Button" method="_on_button_down"]

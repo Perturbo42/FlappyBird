@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://8re2e28sjumx"]
+
+[ext_resource type="Texture2D" uid="uid://oohobm6g7qg8" path="res://Art/unitytut-pipe.png" id="1_8f5oa"]
+[ext_resource type="PackedScene" uid="uid://cof6mad4hauyj" path="res://Scenes/Death Box.tscn" id="2_nq301"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq301"]
+size = Vector2(436, 2152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5chl"]
+size = Vector2(20, 59.68187)
+
+[node name="Pipe" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8f5oa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_nq301")
+
+[node name="Killzone" parent="." instance=ExtResource("2_nq301")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, -4.4999695)
+scale = Vector2(22.321577, -36.175137)
+shape = SubResource("RectangleShape2D_t5chl")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7ra3rcbnpgqf"]
+
+[ext_resource type="Script" uid="uid://btfny1n8iq12t" path="res://Scripts/Pipe_Move.gd" id="1_iloy2"]
+[ext_resource type="PackedScene" uid="uid://8re2e28sjumx" path="res://Scenes/Pipe.tscn" id="1_nx73r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iloy2"]
+
+[node name="Pipes" type="Node2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_iloy2")
+moveSpeed = 200.0
+deadZone = -2000.0
+
+[node name="Pipe" parent="." instance=ExtResource("1_nx73r")]
+position = Vector2(0, -1600)
+
+[node name="Pipe2" parent="." instance=ExtResource("1_nx73r")]
+position = Vector2(0, 1600)
+scale = Vector2(1, -1)
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.99383986, 0.99450547)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(15.239122, 58.08265)
+shape = SubResource("RectangleShape2D_iloy2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
