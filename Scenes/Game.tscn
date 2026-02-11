@@ -54,14 +54,14 @@ text = "Play Again"
 script = ExtResource("4_kldst")
 
 [node name="Killzone" parent="." instance=ExtResource("6_7lihs")]
-position = Vector2(640, 0)
+position = Vector2(640, -10)
 scale = Vector2(68, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("RectangleShape2D_fgofq")
 
 [node name="Killzone2" parent="." instance=ExtResource("6_7lihs")]
-position = Vector2(640, 720)
+position = Vector2(640, 730)
 scale = Vector2(68, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone2"]
